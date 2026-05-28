@@ -115,9 +115,9 @@ def _scrape(search_term: str, location: str, sites: list[str]):
         site_name=sites,
         search_term=search_term,
         location=location,
-        hours_old=24,
+        hours_old=72,
         country_indeed="India",
-        results_wanted=50,
+        results_wanted=100,
     )
 
 
