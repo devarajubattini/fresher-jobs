@@ -1,0 +1,10 @@
+python-jobspy
+supabase
+python-dotenv
+langchain-google-genai
+langchain-groq
+langgraph
+langchain
+fastapi[standard]
+uvicorn[standard]
+pandas

@@ -1,0 +1,39 @@
+name: Scrape Jobs
+
+on:
+  schedule:
+    - cron: "0 */4 * * *"   # every 4 hours
+  workflow_dispatch:         # manual trigger from GitHub UI
+
+jobs:
+  scrape:
+    name: Run job scraping agent
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    env:
+      GOOGLE_API_KEY:  ${{ secrets.GOOGLE_API_KEY }}
+      GROQ_API_KEY:    ${{ secrets.GROQ_API_KEY }}
+      SUPABASE_URL:    ${{ secrets.SUPABASE_URL }}
+      SUPABASE_KEY:    ${{ secrets.SUPABASE_KEY }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run scraping agent
+        id: scrape
+        run: python -m agent.agent
+
+      - name: Notify on failure
+        if: failure()
+        run: echo "SCRAPE FAILED — check the logs above for details."
