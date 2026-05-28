@@ -50,7 +50,7 @@ GAP_TERMS = [
 ALL_SEARCH_TERMS = PRIMARY_TERMS + SECONDARY_TERMS + GAP_TERMS
 
 LOCATION = "Hyderabad, India"
-SITES = ["linkedin", "indeed", "glassdoor"]
+SITES = ["linkedin", "indeed"]
 
 # ---------------------------------------------------------------------------
 # System prompt
